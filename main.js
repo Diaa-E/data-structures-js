@@ -64,5 +64,5 @@ function linkedList()
         return head;
     }
 
-    return (append, getTail, getHead)
+    return {append, getTail, getHead}
 }
