@@ -27,3 +27,37 @@ function linkedListNode()
 
     return {getValue, getNext, setNext, setValue};
 }
+
+function linkedList()
+{
+    let head = null;
+
+    const append = (newValue) => {
+
+        //create first element in the list
+        if (head === null)
+        {
+            head = linkedListNode();
+            head.setValue = newValue;
+        }
+        else
+        {
+            getTail().setNext(linkedListNode());
+            getTail().setValue(newValue);
+        }
+    }
+
+    const getTail = () => {
+
+        let tail = null;
+
+        while (head !== null && head.getNext() !== null)
+        {
+            tail = head.getNext();
+        }
+
+        return tail;
+    }
+
+    return (append, getTail)
+}
