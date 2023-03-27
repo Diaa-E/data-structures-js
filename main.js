@@ -51,7 +51,7 @@ function linkedList()
 
         let tail = head.getValue();
 
-        while (head !== null && head.getNext() !== null)
+        while (head !== null && tail.getNext() !== null)
         {
             tail = tail.getNext().getValue();
         }
@@ -63,7 +63,7 @@ function linkedList()
 
         let tail = head
 
-        while (head !== null && head.getNext() !== null)
+        while (head !== null && tail.getNext() !== null)
         {
             tail = tail.getNext()
         }
