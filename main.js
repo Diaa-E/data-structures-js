@@ -59,5 +59,10 @@ function linkedList()
         return tail;
     }
 
-    return (append, getTail)
+    const getHead = () => {
+
+        return head;
+    }
+
+    return (append, getTail, getHead)
 }
