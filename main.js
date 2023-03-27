@@ -47,7 +47,7 @@ function linkedList()
         }
     }
 
-    const getTail = () => {
+    const getTailValue = () => {
 
         let tail = head.getValue();
 
@@ -59,6 +59,25 @@ function linkedList()
         return tail;
     }
 
+    const getTail = () => {
+
+        let tail = head
+
+        while (head !== null && head.getNext() !== null)
+        {
+            tail = tail.getNext()
+        }
+
+        return tail;
+    }
+
+    const getHeadValue = () => {
+
+        if (head === null) return null;
+
+        return head.getValue();
+    }
+
     const getHead = () => {
 
         if (head === null) return null;
@@ -66,5 +85,13 @@ function linkedList()
         return head.getValue();
     }
 
-    return {append, getTail, getHead}
+    return {append, getTailValue, getHeadValue}
 }
+
+const list = linkedList();
+console.log(list.getHeadValue())
+
+list.append(15)
+list.append(90)
+console.log(list.getHeadValue())
+console.log(list.getTailValue())
