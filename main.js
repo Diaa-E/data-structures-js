@@ -38,7 +38,7 @@ function linkedList()
         if (head === null)
         {
             head = linkedListNode();
-            head.setValue = newValue;
+            head.setValue(newValue)
         }
         else
         {
