@@ -53,7 +53,7 @@ function linkedList()
 
         while (head !== null && head.getNext() !== null)
         {
-            tail = head.getNext();
+            tail = head.getNext().getValue();
         }
 
         return tail;
@@ -61,7 +61,9 @@ function linkedList()
 
     const getHead = () => {
 
-        return head;
+        if (head === null) return null;
+
+        return head.getValue();
     }
 
     return {append, getTail, getHead}
