@@ -78,13 +78,6 @@ function linkedList()
         return head.getValue();
     }
 
-    const getHead = () => {
-
-        if (head === null) return null;
-
-        return head.getValue();
-    }
-
     return {append, getTailValue, getHeadValue}
 }
 
