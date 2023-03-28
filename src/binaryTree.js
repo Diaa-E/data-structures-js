@@ -6,37 +6,7 @@ function treeNode()
     let left = null;
     let right = null;
 
-    const getData = () => {
-
-        return data;
-    }
-
-    const setData = (newData) => {
-
-        data = newData;
-    }
-
-    const getLeft = () => {
-
-        return left;
-    }
-
-    const setLeft = (newLeft) => {
-
-        left = newLeft;
-    }
-
-    const getRight = () => {
-
-        return right;
-    }
-
-    const setRight = (newRight) => {
-
-        right = newRight;
-    }
-
-    return {getRight, setRight, setLeft, getLeft, setData, getData};
+    return {data: data, right: right, left: left};
 }
 
 export function balancedTree(array)
@@ -54,52 +24,52 @@ export function balancedTree(array)
         let mid = parseInt((start + end) / 2);
 
         let node = treeNode();
-        node.setData(array[mid]);
+        node.data = array[mid];
 
-        node.setLeft(buildTree(sortedArray, start, mid - 1));
-        node.setRight(buildTree(sortedArray, mid + 1, end));
+        node.left = buildTree(sortedArray, start, mid - 1);
+        node.right = buildTree(sortedArray, mid + 1, end);
 
         return node;
     }
 
     const getRoot = () => {
 
-        return root.getData();
+        return root.data;
     }
 
     const insert = (newData, node = root) => {
 
-        if (node.getData() === null)
+        if (node.data === null)
         {
-            node = treeNode().setData(newData);
+            node = treeNode().data = newData;
             return;
         }
-        else if (node.getData() === newData)
+        else if (node.data === newData)
         {
             return;
         }
-        else if (node.getData() > newData)
+        else if (node.data > newData)
         {
-            if (node.getRight() === null)
+            if (node.right === null)
             {
-                node.setRight(treeNode().setData(newData));
+                node.right = treeNode().data = newData;
                 return;
             }
             else
             {
-                insert(newData, node.getRight());
+                insert(newData, node.right);
             }
         }
-        else if (node.getData() < newData)
+        else if (node.data < newData)
         {
-            if (node.getRight() === null)
+            if (node.right === null)
             {
-                node.setLeft(treeNode().setData(newData));
+                node.setLeft(treeNode().data = newData);
                 return;
             }
             else
             {
-                insert(newData, node.getLeft());
+                insert(newData, node.left);
             }
         }
     }
@@ -109,12 +79,12 @@ export function balancedTree(array)
         if (node === null) {
            return;
         }
-        if (node.getRight() !== null) {
-          prettyPrint(node.getRight(), `${prefix}${isLeft ? '│   ' : '    '}`, false);
+        if (node.right !== null) {
+          prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
         }
-        console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.getData()}`);
-        if (node.getLeft() !== null) {
-          prettyPrint(node.getLeft(), `${prefix}${isLeft ? '    ' : '│   '}`, true);
+        console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
+        if (node.left !== null) {
+          prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
         }
       }
 
