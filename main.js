@@ -87,14 +87,34 @@ function linkedList()
         return head.getValue();
     }
 
-    return {append, getTailValue, getHeadValue, prepend}
+    const getSize = () => {
+
+        if (head === null) return 0;
+        
+        let size = 1; //if head is not null then there is at least 1 node
+        let tail = head;
+
+        while (tail.getNext() !== null)
+        {
+            size++;
+            tail = tail.getNext();
+        }
+
+        return size;
+    }
+
+    return {append, getTailValue, getHeadValue, prepend, getSize}
 }
 
 const list = linkedList();
 console.log(list.getHeadValue())
 
+console.log(list.getSize())
 list.append(15)
+console.log(list.getSize())
 console.log(list.getHeadValue());
 list.prepend(7);
+list.prepend(112);
 console.log(list.getHeadValue());
 console.log(list.getTailValue());
+console.log(list.getSize())
