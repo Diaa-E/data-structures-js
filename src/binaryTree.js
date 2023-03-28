@@ -43,7 +43,6 @@ export function balancedTree(array)
 {
     array.sort( (a,b) => a - b) //sort without callback sorts strings only
     array = [...new Set(array)]; //remove duplicates
-    console.log(array)
     
     let root = buildTree(array, 0, array.length - 1);
 
@@ -55,6 +54,8 @@ export function balancedTree(array)
         let mid = parseInt((start + end) / 2);
 
         let node = treeNode();
+        node.setData(array[mid]);
+        
         node.setLeft(buildTree(sortedArray, start, mid - 1));
         node.setRight(buildTree(sortedArray, mid + 1, end));
 
