@@ -228,6 +228,54 @@ function linkedList()
         while (cursor !== null)
     }
 
+    const insert = (value, index) => {
+
+        if (head === null || index > getSize() || index < 0) throw new Error(INDEX_ERROR);
+
+        let prev = null;
+        let cursor = head;
+        let next = head.getNext();
+        let counter = 0;
+
+        do
+        {
+            if (counter === index)
+            {
+                //insert head
+                if (prev === null)
+                {
+                    let newHead = linkedListNode();
+                    newHead.setValue(value);
+                    newHead.setNext(head);
+                    head = newHead;
+                    return
+                }
+                //insert tail
+                else if (next === null)
+                {
+                    let newTail = linkedListNode();
+                    newTail.setValue(value);
+                    newTail.setNext(head);
+                    prev.setNext(newTail);
+                    newTail.setNext(cursor);
+                    return
+                }
+
+                let newNode = linkedListNode();
+                newNode.setValue(value);
+                newNode.setNext(cursor);
+                prev.setNext(newNode);
+                return
+            }
+
+            prev = cursor;
+            cursor = cursor.getNext();
+            next = cursor.getNext();
+            counter++;
+        }
+        while (cursor !== null)
+    }
+
     return {
         append,
         getTailValue, 
@@ -238,7 +286,8 @@ function linkedList()
         contains, 
         getIndex, 
         toString,
-        remove
+        remove,
+        insert
     }
 }
 
@@ -251,4 +300,7 @@ list.append(345)
 console.log(list.toString())
 
 list.remove(1)
+console.log(list.toString())
+
+list.insert(14, 2)
 console.log(list.toString())
