@@ -78,6 +78,40 @@ export function balancedTree(array)
         }
     }
 
+    const find = (targetData, node = root) => {
+
+        if (node === null)
+        {
+            return null;
+        }
+        else if (node.data === targetData)
+        {
+            return node;
+        }
+        else if (node.data < targetData)
+        {
+            if (node.right === null)
+            {
+                return null;
+            }
+            else
+            {
+                return find(targetData, node.right);
+            }
+        }
+        else if (node.data > targetData)
+        {
+            if (node.left === null)
+            {
+                return null;
+            }
+            else
+            {
+                return find(targetData, node.left);
+            }
+        }
+    }
+
     //copied from The Odin Project, refitted for my code
     const prettyPrint = (node = root, prefix = '', isLeft = true) => {
         if (node === null) {
@@ -92,5 +126,5 @@ export function balancedTree(array)
         }
       }
 
-    return {getRoot, prettyPrint, insert}
+    return {getRoot, prettyPrint, insert, find}
 }
