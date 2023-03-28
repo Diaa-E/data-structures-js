@@ -149,11 +149,31 @@ function linkedList()
         return false;
     }
 
-    return {append, getTailValue, getHeadValue, prepend, getSize, pop, contains}
+    const getIndex = (value) => {
+
+        if (head === null) return -1;
+
+        let cursor = head;
+        let index = 0
+
+        do
+        {
+            if (cursor.getValue() === value) return index;
+            cursor = cursor.getNext();
+            index++;
+        }
+        while (cursor !== null)
+
+        return -1;
+    }
+
+    return {append, getTailValue, getHeadValue, prepend, getSize, pop, contains, getIndex}
 }
 
 const list = linkedList();
 
 list.append(1)
+list.append(23)
+list.append(16)
 
-console.log(list.contains(1))
+console.log(list.getIndex(0))
