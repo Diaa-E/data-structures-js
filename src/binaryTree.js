@@ -41,7 +41,7 @@ function treeNode()
 
 export function balancedTree(array)
 {
-    array.sort( (a,b) => a - b) //sort without callback sorts strings only
+    array.sort((a,b) => a - b) //sort without callback sorts strings only
     array = [...new Set(array)]; //remove duplicates
     
     let root = buildTree(array, 0, array.length - 1);
@@ -55,7 +55,7 @@ export function balancedTree(array)
 
         let node = treeNode();
         node.setData(array[mid]);
-        
+
         node.setLeft(buildTree(sortedArray, start, mid - 1));
         node.setRight(buildTree(sortedArray, mid + 1, end));
 
@@ -65,6 +65,43 @@ export function balancedTree(array)
     const getRoot = () => {
 
         return root.getData();
+    }
+
+    const insert = (newData, node = root) => {
+
+        if (node.getData() === null)
+        {
+            node = treeNode().setData(newData);
+            return;
+        }
+        else if (node.getData() === newData)
+        {
+            return;
+        }
+        else if (node.getData() > newData)
+        {
+            if (node.getRight() === null)
+            {
+                node.setRight(treeNode().setData(newData));
+                return;
+            }
+            else
+            {
+                insert(newData, node.getRight());
+            }
+        }
+        else if (node.getData() < newData)
+        {
+            if (node.getRight() === null)
+            {
+                node.setLeft(treeNode().setData(newData));
+                return;
+            }
+            else
+            {
+                insert(newData, node.getLeft());
+            }
+        }
     }
 
     //copied from The Odin Project, refitted for my code
@@ -81,5 +118,5 @@ export function balancedTree(array)
         }
       }
 
-    return {getRoot, prettyPrint}
+    return {getRoot, prettyPrint, insert}
 }
