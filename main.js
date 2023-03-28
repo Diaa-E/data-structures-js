@@ -184,6 +184,50 @@ function linkedList()
         return listString + "null"
     }
 
+    const remove = (index) => {
+
+        if (head === null || index > getSize() || index < 0) throw new Error(INDEX_ERROR);
+
+        let prev = null;
+        let cursor = head;
+        let next = head.getNext();
+        let counter = 0;
+
+        do
+        {
+            if (counter === index)
+            {
+                //single node list
+                if (prev === null && next === null)
+                {
+                    head = null;
+                    return
+                }
+                //remove head
+                else if (prev === null)
+                {
+                    head = head.getNext();
+                    return
+                }
+                //remove tail
+                else if (next === null)
+                {
+                    prev.setNext(null);
+                    return
+                }
+
+                prev.setNext(cursor.getNext());
+                return
+            }
+
+            prev = cursor;
+            cursor = cursor.getNext();
+            next = cursor.getNext();
+            counter++;
+        }
+        while (cursor !== null)
+    }
+
     return {
         append,
         getTailValue, 
@@ -193,11 +237,18 @@ function linkedList()
         pop, 
         contains, 
         getIndex, 
-        toString
+        toString,
+        remove
     }
 }
 
 const list = linkedList();
 
 list.append("text")
+list.append(12);
+list.append(15);
+list.append(345)
+console.log(list.toString())
+
+list.remove(1)
 console.log(list.toString())
