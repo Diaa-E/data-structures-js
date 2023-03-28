@@ -167,13 +167,37 @@ function linkedList()
         return -1;
     }
 
-    return {append, getTailValue, getHeadValue, prepend, getSize, pop, contains, getIndex}
+    const toString = () => {
+
+        if (head === null) return "null";
+
+        let listString = "";
+        let cursor = head;
+
+        do
+        {
+            listString += `( ${cursor.getValue()} ) -> `;
+            cursor = cursor.getNext();
+        }
+        while (cursor !== null)
+
+        return listString + "null"
+    }
+
+    return {
+        append,
+        getTailValue, 
+        getHeadValue, 
+        prepend, 
+        getSize, 
+        pop, 
+        contains, 
+        getIndex, 
+        toString
+    }
 }
 
 const list = linkedList();
 
-list.append(1)
-list.append(23)
-list.append(16)
-
-console.log(list.getIndex(0))
+list.append("text")
+console.log(list.toString())
