@@ -48,11 +48,12 @@ export function balancedTree(array)
         {
             return;
         }
-        else if (node.data > newData)
+        else if (node.data < newData)
         {
             if (node.right === null)
             {
-                node.right = treeNode().data = newData;
+                node.right = treeNode();
+                node.right.data = newData; 
                 return;
             }
             else
@@ -60,11 +61,12 @@ export function balancedTree(array)
                 insert(newData, node.right);
             }
         }
-        else if (node.data < newData)
+        else if (node.data > newData)
         {
-            if (node.right === null)
+            if (node.left === null)
             {
-                node.setLeft(treeNode().data = newData);
+                node.left = treeNode()
+                node.left.data = newData; 
                 return;
             }
             else
