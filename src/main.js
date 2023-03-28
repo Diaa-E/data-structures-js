@@ -2,9 +2,41 @@
 
 import { linkedList} from "./linkedList";
 
-const list = linkedList();
-list.append(13);
-list.append(16);
-list.append(1323);
-list.append(17);
-console.log(list.toString())
+function treeNode()
+{
+    let data = null;
+    let left = null;
+    let right = null;
+
+    const getData = () => {
+
+        return data;
+    }
+
+    const setData = (newData) => {
+
+        data = newData;
+    }
+
+    const getLeft = () => {
+
+        return left;
+    }
+
+    const setLeft = (newLeft) => {
+
+        left = newLeft;
+    }
+
+    const getRight = () => {
+
+        return right;
+    }
+
+    const setRight = (newRight) => {
+
+        right = newRight;
+    }
+
+    return {getRight, setRight, setLeft, getLeft, setData, getData};
+}
