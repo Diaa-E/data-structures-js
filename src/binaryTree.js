@@ -41,8 +41,9 @@ function treeNode()
 
 export function balancedTree(array)
 {
-    array.sort();
+    array.sort( (a,b) => a - b) //sort without callback sorts strings only
     array = [...new Set(array)]; //remove duplicates
+    console.log(array)
     
     let root = buildTree(array, 0, array.length - 1);
 
