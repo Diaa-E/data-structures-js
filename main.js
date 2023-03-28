@@ -290,17 +290,3 @@ function linkedList()
         insert
     }
 }
-
-const list = linkedList();
-
-list.append("text")
-list.append(12);
-list.append(15);
-list.append(345)
-console.log(list.toString())
-
-list.remove(1)
-console.log(list.toString())
-
-list.insert(14, 2)
-console.log(list.toString())
