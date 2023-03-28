@@ -46,9 +46,9 @@ export function balancedTree(array)
     
     let root = buildTree(array, 0, array.length - 1);
 
-    const buildTree = (sortedArray, start, end) => {
-
-        //base vase
+    function buildTree(sortedArray, start, end)
+    {
+        //base case
         if (start > end) return null;
 
         let mid = parseInt((start + end) / 2);
