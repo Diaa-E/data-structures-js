@@ -186,7 +186,7 @@ function linkedList()
 
     const remove = (index) => {
 
-        if (head === null || index > getSize() || index < 0) throw new Error(INDEX_ERROR);
+        if (head === null || index > getSize() - 1 || index < 0) throw new Error(INDEX_ERROR);
 
         let prev = null;
         let cursor = head;
@@ -230,7 +230,7 @@ function linkedList()
 
     const insert = (value, index) => {
 
-        if (head === null || index > getSize() || index < 0) throw new Error(INDEX_ERROR);
+        if (head === null || index > getSize() - 1 || index < 0) throw new Error(INDEX_ERROR);
 
         let prev = null;
         let cursor = head;
