@@ -4,6 +4,7 @@ function linkedListNode()
 {
     let value = null;
     let next = null;
+    const INDEX_ERROR = "Index out of list bounds"
 
     const getValue = () => {
 
@@ -103,7 +104,33 @@ function linkedList()
         return size;
     }
 
-    return {append, getTailValue, getHeadValue, prepend, getSize}
+    const pop = () => {
+
+        //empty list
+        if (head === null) throw new Error(INDEX_ERROR);
+
+        //single node list
+        if (head.getNext() === null)
+        {
+            let value = head.getValue();
+            head = null;
+            return value;
+        }
+
+        let newTail = head;
+        let tail = head.getNext();
+
+        while (tail.getNext() !== null)
+        {
+            newTail = tail;
+            tail = tail.getNext();
+        }
+
+        newTail.setNext(null); //remove last element
+        return newTail.getValue(); //return last element
+    }
+
+    return {append, getTailValue, getHeadValue, prepend, getSize, pop}
 }
 
 const list = linkedList();
