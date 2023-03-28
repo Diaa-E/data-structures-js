@@ -49,14 +49,7 @@ function linkedList()
 
     const getTailValue = () => {
 
-        let tail = head.getValue();
-
-        while (head !== null && tail.getNext() !== null)
-        {
-            tail = tail.getNext().getValue();
-        }
-
-        return tail;
+        return getTail().getValue();
     }
 
     const getTail = () => {
