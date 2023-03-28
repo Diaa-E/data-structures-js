@@ -127,21 +127,17 @@ function linkedList()
         }
 
         newTail.setNext(null); //remove last element
-        return newTail.getValue(); //return last element
+        return tail.getValue(); //return last element
     }
 
     return {append, getTailValue, getHeadValue, prepend, getSize, pop}
 }
 
 const list = linkedList();
-console.log(list.getHeadValue())
 
-console.log(list.getSize())
-list.append(15)
-console.log(list.getSize())
-console.log(list.getHeadValue());
-list.prepend(7);
-list.prepend(112);
-console.log(list.getHeadValue());
-console.log(list.getTailValue());
-console.log(list.getSize())
+list.append(1)
+list.append(4)
+list.append(12)
+
+console.log(list.pop())
+console.log(list.getTailValue())
