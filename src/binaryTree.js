@@ -43,6 +43,7 @@ export function balancedTree(array)
         {
             node = treeNode();
             node.data = newData;
+            root = node
             return;
         }
         else if (node.data === newData)
