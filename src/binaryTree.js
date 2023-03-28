@@ -65,5 +65,19 @@ export function balancedTree(array)
         return root.getData();
     }
 
-    return {getRoot}
+    //copied from The Odin Project, refitted for my code
+    const prettyPrint = (node = root, prefix = '', isLeft = true) => {
+        if (node === null) {
+           return;
+        }
+        if (node.getRight() !== null) {
+          prettyPrint(node.getRight(), `${prefix}${isLeft ? '│   ' : '    '}`, false);
+        }
+        console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.getData()}`);
+        if (node.getLeft() !== null) {
+          prettyPrint(node.getLeft(), `${prefix}${isLeft ? '    ' : '│   '}`, true);
+        }
+      }
+
+    return {getRoot, prettyPrint}
 }
