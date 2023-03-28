@@ -66,6 +66,8 @@ function linkedList()
 
     const getTailValue = () => {
 
+        if (head === null) return null;
+        
         return getTail().getValue();
     }
 
@@ -136,8 +138,6 @@ function linkedList()
 const list = linkedList();
 
 list.append(1)
-list.append(4)
-list.append(12)
 
 console.log(list.pop())
 console.log(list.getTailValue())
