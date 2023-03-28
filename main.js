@@ -132,13 +132,28 @@ function linkedList()
         return tail.getValue(); //return last element
     }
 
-    return {append, getTailValue, getHeadValue, prepend, getSize, pop}
+    const contains = (value) => {
+
+        if (head === null) return false;
+
+        let cursor = head;
+
+        //run at least once for single node lists
+        do
+        {
+            if (cursor.getValue() === value) return true;
+            cursor = cursor.getNext();
+        }
+        while (cursor !== null)
+
+        return false;
+    }
+
+    return {append, getTailValue, getHeadValue, prepend, getSize, pop, contains}
 }
 
 const list = linkedList();
 
 list.append(1)
 
-console.log(list.pop())
-console.log(list.getHeadValue())
-console.log(list.pop())
+console.log(list.contains(1))
