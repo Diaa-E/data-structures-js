@@ -47,6 +47,22 @@ function linkedList()
         }
     }
 
+    const prepend = (newValue) => {
+
+        if (head === null)
+        {
+            head = linkedListNode();
+            head.setValue(newValue)
+        }
+        else
+        {
+            let newHead = linkedListNode();
+            newHead.setValue(newValue);
+            newHead.setNext(head);
+            head = newHead
+        }
+    }
+
     const getTailValue = () => {
 
         return getTail().getValue();
@@ -71,13 +87,14 @@ function linkedList()
         return head.getValue();
     }
 
-    return {append, getTailValue, getHeadValue}
+    return {append, getTailValue, getHeadValue, prepend}
 }
 
 const list = linkedList();
 console.log(list.getHeadValue())
 
 list.append(15)
-list.append(90)
-console.log(list.getHeadValue())
-console.log(list.getTailValue())
+console.log(list.getHeadValue());
+list.prepend(7);
+console.log(list.getHeadValue());
+console.log(list.getTailValue());
