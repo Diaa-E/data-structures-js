@@ -39,9 +39,10 @@ export function balancedTree(array)
 
     const insert = (newData, node = root) => {
 
-        if (node.data === null)
+        if (node === null)
         {
-            node = treeNode().data = newData;
+            node = treeNode();
+            node.data = newData;
             return;
         }
         else if (node.data === newData)
