@@ -112,6 +112,65 @@ export function balancedTree(array)
         }
     }
 
+    //since javascript has no pointers there is no way to delete an
+    //object by setting it to null with a function
+    //instead the tree is reconstructed while replacing the target node
+    const remove = (targetData) =>
+    {
+        root = removeRecursive(targetData, root)
+    }
+
+    const removeRecursive = (targetData, node = root) => {
+
+        if (node === null)
+        {
+            return node;
+        }
+        else if (targetData === node.data)
+        {
+            if (node.right === null && node.left === null) //leaf
+            {
+                return null;
+            }
+            else if (node.right === null) //left child
+            {
+                return node.left;
+            }
+            else if (node.left === null) //right child
+            {
+                return node.right;
+            }
+            else if (node.right !== null && node.left !== null) //2 children
+            {
+                node.data = minValue(node.right); //replace node value with inorder successor
+                node.right = removeRecursive(node.data, node.right); //delete inorder successor
+            }
+        }
+        else if (targetData > node.data)
+        {
+            node.right = removeRecursive(targetData, node.right);
+        }
+        else if (targetData < node.data)
+        {
+            node.left = removeRecursive(targetData, node.left);
+        }
+
+        return node;
+    }
+
+    const minValue = (node) => {
+
+        let min = node.data;
+
+        while (node.left !== null)
+        {
+            min = node.left.data;
+            node = node.left;
+        }
+
+        return min;
+    }
+
     //copied from The Odin Project, refitted for my code
     const prettyPrint = (node = root, prefix = '', isLeft = true) => {
         if (node === null) {
@@ -126,5 +185,5 @@ export function balancedTree(array)
         }
       }
 
-    return {getRoot, prettyPrint, insert, find}
+    return {getRoot, prettyPrint, insert, find, remove}
 }
