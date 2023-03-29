@@ -50,7 +50,7 @@ export function balancedTree(array)
         {
             return;
         }
-        else if (node.data < newData)
+        else if (newData > node.data)
         {
             if (node.right === null)
             {
@@ -63,7 +63,7 @@ export function balancedTree(array)
                 insert(newData, node.right);
             }
         }
-        else if (node.data > newData)
+        else if (newData < node.data)
         {
             if (node.left === null)
             {
@@ -88,7 +88,7 @@ export function balancedTree(array)
         {
             return node;
         }
-        else if (node.data < targetData)
+        else if (targetData > node.data)
         {
             if (node.right === null)
             {
@@ -99,7 +99,7 @@ export function balancedTree(array)
                 return find(targetData, node.right);
             }
         }
-        else if (node.data > targetData)
+        else if (targetData < node.data)
         {
             if (node.left === null)
             {
