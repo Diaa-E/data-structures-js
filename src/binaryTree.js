@@ -199,6 +199,21 @@ export function balancedTree(array)
         return typeof callback === 'function'? undefined : data //check if a function is passed as an argument
     }
 
+    const preOrder = (callback) => {
+
+        return preOrderRecursive(root)
+    }
+
+    const preOrderRecursive = (node) => {
+
+        if (node === null) return [];
+
+        let arr = [];
+        arr.push(node.data);
+
+        return [node.data, ...preOrderRecursive(node.left), ...preOrderRecursive(node.right)]
+    }
+
     //copied from The Odin Project, refitted for my code
     const prettyPrint = (node = root, prefix = '', isLeft = true) => {
         if (node === null) {
@@ -213,5 +228,5 @@ export function balancedTree(array)
         }
       }
 
-    return {getRoot, prettyPrint, insert, find, remove, levelOrder}
+    return {getRoot, prettyPrint, insert, find, remove, levelOrder, preOrder}
 }
