@@ -222,6 +222,29 @@ export function balancedTree(array)
         }
     }
 
+    const inOrder = (callback) => {
+
+        return inOrderRecursive(root, callback);
+    }
+
+    const inOrderRecursive = (node, callback) => {
+
+        if (typeof callback === 'function')
+        {
+            if (node === null) return node;
+            
+            inOrderRecursive(node.left, callback);
+            callback(node);
+            inOrderRecursive(node.right, callback);
+        }
+        else
+        {
+            if (node === null) return [];
+
+            return [... inOrderRecursive(node.left), node.data, ... inOrderRecursive(node.right)];
+        }
+    }
+
     //copied from The Odin Project, refitted for my code
     const prettyPrint = (node = root, prefix = '', isLeft = true) => {
         if (node === null) {
@@ -236,5 +259,5 @@ export function balancedTree(array)
         }
       }
 
-    return {getRoot, prettyPrint, insert, find, remove, levelOrder, preOrder}
+    return {getRoot, prettyPrint, insert, find, remove, levelOrder, preOrder, inOrder}
 }
