@@ -268,6 +268,13 @@ export function balancedTree(array)
         }
     }
 
+    const getHeight = (node) => {
+
+        if (node === null) return -1;
+
+        return Math.max(getHeight(node.left), getHeight(node.right)) + 1;
+    }
+
     //copied from The Odin Project, refitted for my code
     const prettyPrint = (node = root, prefix = '', isLeft = true) => {
         if (node === null) {
@@ -291,6 +298,7 @@ export function balancedTree(array)
         levelOrder, 
         preOrder, 
         inOrder, 
-        postOrder
+        postOrder,
+        getHeight
     }
 }
