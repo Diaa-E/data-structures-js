@@ -276,29 +276,19 @@ export function balancedTree(array)
     }
 
     //getting a node;s depth is basically finding the node while counting steps
-    const getDepth = (node) => {
+    const getDepth = (node, cursor = root) => {
 
-        let cursor = root;
+        //if the target node doesn't exit or the tree is empty
+        if (cursor === null || node === null) return -1;
+
         let depth = -1;
 
-        if (node === null) return depth; //node doesn't exist
-
-        while (cursor !== null)
+        //depth is update with each call
+        if (node.data === cursor.data ||
+            (depth = getDepth(node, cursor.left) >= 0) ||
+            (depth = getDepth(node, cursor.right) >= 0))
         {
-            if (node.data === cursor.data)
-            {
-                return depth + 1;
-            }
-            else if (node.data > cursor.data)
-            {
-                cursor = cursor.right;
-                depth++;
-            }
-            else if (node.data < cursor.data)
-            {
-                cursor = cursor.left;
-                depth++;
-            }
+            return depth + 1;
         }
 
         return depth;
