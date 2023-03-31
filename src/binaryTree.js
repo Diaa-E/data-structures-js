@@ -275,6 +275,35 @@ export function balancedTree(array)
         return Math.max(getHeight(node.left), getHeight(node.right)) + 1;
     }
 
+    //getting a node;s depth is basically finding the node while counting steps
+    const getDepth = (node) => {
+
+        let cursor = root;
+        let depth = -1;
+
+        if (node === null) return depth; //node doesn't exist
+
+        while (cursor !== null)
+        {
+            if (node.data === cursor.data)
+            {
+                return depth + 1;
+            }
+            else if (node.data > cursor.data)
+            {
+                cursor = cursor.right;
+                depth++;
+            }
+            else if (node.data < cursor.data)
+            {
+                cursor = cursor.left;
+                depth++;
+            }
+        }
+
+        return depth;
+    }
+
     //copied from The Odin Project, refitted for my code
     const prettyPrint = (node = root, prefix = '', isLeft = true) => {
         if (node === null) {
@@ -299,6 +328,7 @@ export function balancedTree(array)
         preOrder, 
         inOrder, 
         postOrder,
-        getHeight
+        getHeight,
+        getDepth
     }
 }
