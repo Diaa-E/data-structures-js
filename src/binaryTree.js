@@ -201,17 +201,25 @@ export function balancedTree(array)
 
     const preOrder = (callback) => {
 
-        return preOrderRecursive(root)
+        return preOrderRecursive(root, callback);
     }
 
-    const preOrderRecursive = (node) => {
+    const preOrderRecursive = (node, callback) => {
 
-        if (node === null) return [];
+        if (typeof callback === 'function')
+        {
+            if (node === null) return node;
+            
+            callback(node);
+            preOrderRecursive(node.left, callback);
+            preOrderRecursive(node.right, callback);
+        }
+        else
+        {
+            if (node === null) return [];
 
-        let arr = [];
-        arr.push(node.data);
-
-        return [node.data, ...preOrderRecursive(node.left), ...preOrderRecursive(node.right)]
+            return [node.data, ...preOrderRecursive(node.left), ...preOrderRecursive(node.right)];
+        }
     }
 
     //copied from The Odin Project, refitted for my code
