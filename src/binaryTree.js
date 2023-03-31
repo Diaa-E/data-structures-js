@@ -171,6 +171,27 @@ export function balancedTree(array)
         return min;
     }
 
+    const levelOrder = (callback) => {
+
+        const q = [];
+        const data = [];
+        q.push(root)
+
+        while (q.length !== 0)
+        {
+            let cursor = q[0];
+            data.push(cursor.data);
+
+            if (typeof callback === 'function') callback(q[0]);
+            if (cursor.left !== null) q.push(cursor.left);
+            if (cursor.right !== null) q.push(cursor.right);
+
+            q.shift();
+        }
+
+        return typeof callback === 'function'? null : data //check if a function is passed as an argument
+    }
+
     //copied from The Odin Project, refitted for my code
     const prettyPrint = (node = root, prefix = '', isLeft = true) => {
         if (node === null) {
@@ -185,5 +206,5 @@ export function balancedTree(array)
         }
       }
 
-    return {getRoot, prettyPrint, insert, find, remove}
+    return {getRoot, prettyPrint, insert, find, remove, levelOrder}
 }
