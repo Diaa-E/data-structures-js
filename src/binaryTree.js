@@ -275,6 +275,11 @@ export function balancedTree(array)
         return Math.max(getHeight(node.left), getHeight(node.right)) + 1;
     }
 
+    const isBalanced = () => {
+
+        return Math.abs(getHeight(root.right) - getHeight(root.left)) > 1 ? false : true;
+    }
+
     //getting a node;s depth is basically finding the node while counting steps
     const getDepth = (node, cursor = root) => {
 
@@ -319,6 +324,7 @@ export function balancedTree(array)
         inOrder, 
         postOrder,
         getHeight,
-        getDepth
+        getDepth,
+        isBalanced
     }
 }
