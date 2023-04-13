@@ -16,6 +16,8 @@ export function listDiGraph()
 
     function findShortestPath(start, target)
     {
+        if (!graph.has(target)) throw new Error("The value you are searching for does not exist in the graph.");
+        if (!graph.has(start)) throw new Error("The starting node provided does not exist in the graph.");
         const pred = bfs(start);
         return reconstructPath(start, target, pred);
     }
