@@ -14,5 +14,55 @@ export function listDiGraph()
         graph.get(node).push(destination);
     };
 
-    return {graph: graph, addNode, addEdge};
+    function findShortestPath(start, target)
+    {
+        const pred = bfs(start);
+        return reconstructPath(start, target, pred);
+    }
+
+    function bfs(start)
+    {
+        const q = [start];
+        const visited = new Set();
+        
+        //init predecessor map
+        let pred = new Map();
+        for (const [key, value] of graph)
+        {
+            pred.set(key, null);
+        }
+
+        while (q.length > 0)
+        {
+            const currentNode = q.shift();
+            const currentNeighs = graph.get(currentNode);
+
+            for (const neigh of currentNeighs)
+            {
+                if (!visited.has(neigh))
+                {
+                    q.push(neigh);
+                    visited.add(neigh);
+                    pred.set(neigh, currentNode);
+                }
+            }
+        }
+
+        return pred;
+    }
+
+    function reconstructPath(start, target, pred)
+    {
+        const path = [target];
+
+        while(target !== null && target !== start)
+        {
+            path.push(pred.get(target));
+            target = pred.get(target);
+        }
+
+        return path.reverse();
+    }
+
+    return {graph: graph, addNode, addEdge, findShortestPath};
 }
