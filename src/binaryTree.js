@@ -317,7 +317,7 @@ export function balancedTree(array)
         if (node.left !== null) {
           prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
         }
-      }
+    }
 
     return {
         getRoot,
@@ -333,5 +333,5 @@ export function balancedTree(array)
         getDepth,
         isBalanced,
         rebalance
-    }
+    };
 }
